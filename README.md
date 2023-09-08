@@ -1,0 +1,1 @@
+# Registry of navigation safety objects
