@@ -3,13 +3,13 @@ from django.contrib.gis.db import models
 
 class SafetyObject(models.Model):
     naziv_objekta = models.CharField(max_length=255)
-    ps_br = models.CharField(max_length=10, null=True)
-    e_br = models.CharField(max_length=10, null=True)
-    tip_objekta = models.IntegerField(null=True)
-    lucka_kapetanija = models.CharField(max_length=50, null=True)
-    fotografija = models.URLField(null=True)
-    id_ais = models.CharField(max_length=50, null=True)
-    simbol_oznaka = models.URLField(null=True)
+    ps_br = models.CharField(max_length=10, null=True, blank=True)
+    e_br = models.CharField(max_length=10, null=True, blank=True)
+    tip_objekta = models.IntegerField(null=True, blank=True)
+    lucka_kapetanija = models.CharField(max_length=50, null=True, blank=True)
+    fotografija = models.URLField(null=True, blank=True)
+    id_ais = models.CharField(max_length=50, null=True, blank=True)
+    simbol_oznaka = models.URLField(null=True, blank=True)
 
     lokacija = models.PointField()
 
