@@ -11,4 +11,5 @@ class SafetyObjectAdmin(admin.ModelAdmin):
 
     ordering = ('naziv_objekta', )
 
+
 admin.site.register(SafetyObject, SafetyObjectAdmin)

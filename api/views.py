@@ -18,7 +18,6 @@ class SafetyObjectsApiView(View):
 
     def post(self, request):
         post_data = json.loads(request.body)
-        print(post_data.items())
 
         if not post_data.get('lokacija'):
             return JsonResponse({'data': {}, 'error': 'Location data must not be empty.'}, status=400)
@@ -49,14 +48,14 @@ class SafetyObjectApiView(View):
             data = json.loads(serialize("geojson", queryset, geometry_field="lokacija"))['features'][0]
             return JsonResponse({'data': data})
         except ObjectDoesNotExist:
-            message = f'Object {object_id} not found.'
+            message = f'Object with id={object_id} not found.'
             return JsonResponse({'data': {}, 'error': message}, status=404)
 
     def patch(self, request, object_id):
         try:
             obj = SafetyObject.objects.get(pk=object_id)
         except ObjectDoesNotExist:
-            message = f'Object {object_id} not found.'
+            message = f'Object with id={object_id} not found.'
             return JsonResponse({'data': {}, 'error': message}, status=404)
 
         patch_data = json.loads(request.body)
@@ -85,8 +84,8 @@ class SafetyObjectApiView(View):
         try:
             obj_to_delete = SafetyObject.objects.get(pk=object_id)
             obj_to_delete.delete()
-            message = f'Object {object_id} successfully deleted.'
+            message = f'Object with id={object_id} successfully deleted.'
             return JsonResponse({'data': message})
         except ObjectDoesNotExist:
-            message = f'Object {object_id} not found.'
+            message = f'Object with id={object_id} not found.'
             return JsonResponse({'data': {}, 'error': message}, status=404)
